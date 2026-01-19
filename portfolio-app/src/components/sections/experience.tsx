@@ -8,14 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ExperienceSection = () => {
   return (
-    <SectionWrapper
-      className="flex flex-col items-center justify-center min-h-[120vh] py-20 z-10"
-    >
+    <SectionWrapper className="flex flex-col items-center justify-center min-h-[120vh] py-20 z-10">
       <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
         <SectionHeader
           id="experience"
-          title="Experience"
-          desc="My professional journey."
+          title="Education"
+          desc="My educational background."
           className="mb-12 md:mb-20 mt-0"
         />
 
@@ -56,7 +54,7 @@ const ExperienceCard = ({
         className={cn(
           "bg-card text-card-foreground border-border",
           "hover:border-primary/20 transition-colors duration-300",
-          "shadow-sm hover:shadow-md"
+          "shadow-sm hover:shadow-md",
         )}
       >
         <CardHeader className="pb-3">
@@ -69,7 +67,10 @@ const ExperienceCard = ({
                 {experience.company}
               </div>
             </div>
-            <Badge variant="secondary" className="w-fit font-mono text-xs font-normal">
+            <Badge
+              variant="secondary"
+              className="w-fit font-mono text-xs font-normal"
+            >
               {experience.startDate} - {experience.endDate}
             </Badge>
           </div>

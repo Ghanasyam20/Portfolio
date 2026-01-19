@@ -1,44 +1,41 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { DiMongodb, DiNginx, DiNpm, DiPostgresql, DiVim } from "react-icons/di";
+import { DiMongodb } from "react-icons/di";
 import {
-  FaAws,
-  FaCss3,
-  FaDocker,
   FaEnvelope,
   FaGit,
   FaGithub,
-  FaHtml5,
   FaLinkedin,
-  FaLinux,
-  FaNodeJs,
   FaPhone,
-  FaReact,
-  FaVuejs,
-  FaYarn,
+  FaPython,
 } from "react-icons/fa6";
 import {
-  RiFirebaseFill,
-  RiJavascriptFill,
-  RiNextjsFill,
-  RiTailwindCssFill,
-} from "react-icons/ri";
-import {
-  SiExpress,
+  SiBootstrap,
+  SiBlender,
+  SiCanva,
+  SiCplusplus,
+  SiDjango,
+  SiFigma,
+  SiGit,
+  SiGithub,
   SiJavascript,
-  SiKubuntu,
-  SiPm2,
-  SiPrettier,
-  SiTypescript,
+  SiMysql,
+  SiNumpy,
+  SiPandas,
+  SiPhp,
+  SiTailwindcss,
+  SiTensorflow,
   SiVercel,
-  SiVscodium,
+  SiDotnet,
+  SiC,
 } from "react-icons/si";
-import { VscCode } from "react-icons/vsc";
+import { FaJava } from "react-icons/fa6";
+import { BiLogoAdobe } from "react-icons/bi";
 
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import { TbTerminal2 } from "react-icons/tb";
+import { TbBrandWindows } from "react-icons/tb";
 
 const CONTACT_LINKS = [
   {
@@ -68,161 +65,201 @@ const CONTACT_LINKS = [
 ];
 
 const TOOLS = [
+  // Programming & Markup
+  {
+    name: "C",
+    content: "C - A powerful general-purpose programming language",
+    icon: <SiC size={"50px"} color={"#A8B9CC"} />,
+    color: "#A8B9CC",
+  },
+  {
+    name: "C++",
+    content: "C++ - An extension of C with object-oriented features",
+    icon: <SiCplusplus size={"50px"} color={"#00599C"} />,
+    color: "#00599C",
+  },
+  {
+    name: "Java",
+    content: "Java - A versatile, object-oriented programming language",
+    icon: <FaJava size={"50px"} color={"#007396"} />,
+    color: "#007396",
+  },
   {
     name: "JavaScript",
-    content: "JavaScript is a high-level, interpreted programming language",
+    content: "JavaScript - The language of the web",
     icon: <SiJavascript size={"50px"} color={"#f0db4f"} />,
     color: "#f0db4f",
   },
   {
-    name: "TypeScript",
-    content: "TypeScript is a superset of JavaScript that compiles to plain JS",
-    icon: <SiTypescript size={"50px"} color={"#007acc"} />,
-    color: "#007acc",
-  },
-  {
-    name: "HTML",
-    content: "Next.js is a React framework for production",
-    icon: <FaHtml5 size={"50px"} color="#e34c26" />,
+    name: "HTML5",
+    content: "HTML5 - The standard markup language for web pages",
+    icon: <SiJavascript size={"50px"} color={"#e34c26"} />,
     color: "#e34c26",
   },
   {
-    name: "CSS",
-    content: "Next.js is a React framework for production",
-    icon: <FaCss3 size={"50px"} color="#563d7c" />,
-    color: "#563d7c",
+    name: "PHP",
+    content: "PHP - Server-side scripting language",
+    icon: <SiPhp size={"50px"} color={"#777BB4"} />,
+    color: "#777BB4",
   },
   {
-    name: "Nodejs",
-    content: "Next.js is a React framework for production",
-    icon: <FaNodeJs size={"50px"} color="#6cc24a" />,
-    color: "#6cc24a",
+    name: "Python",
+    content: "Python - A versatile, easy-to-learn programming language",
+    icon: <FaPython size={"50px"} color={"#3776AB"} />,
+    color: "#3776AB",
+  },
+
+  // Frameworks & Libraries
+  {
+    name: ".NET",
+    content: ".NET - Microsoft's framework for building applications",
+    icon: <SiDotnet size={"50px"} color={"#512BD4"} />,
+    color: "#512BD4",
   },
   {
-    name: "React.js",
-    content: "Next.js is a React framework for production",
-    icon: <FaReact size={"50px"} color="#61dafb" />,
-    color: "#61dafb",
+    name: "Bootstrap",
+    content: "Bootstrap - Popular CSS framework for responsive design",
+    icon: <SiBootstrap size={"50px"} color={"#7952B3"} />,
+    color: "#7952B3",
   },
   {
-    name: "Docker",
-    content: "Next.js is a React framework for production",
-    icon: <FaDocker size={"50px"} color="#2496ed" />,
-    color: "#2496ed",
+    name: "Django",
+    content: "Django - High-level Python web framework",
+    icon: <SiDjango size={"50px"} color={"#092E20"} />,
+    color: "#092E20",
   },
   {
-    name: "NginX",
-    content: "Next.js is a React framework for production",
-    icon: <DiNginx size={"50px"} color="#008000" />,
-    color: "#008000",
+    name: "TailwindCSS",
+    content: "TailwindCSS - Utility-first CSS framework",
+    icon: <SiTailwindcss size={"50px"} color={"#06B6D4"} />,
+    color: "#06B6D4",
   },
+
+  // Data & ML
   {
-    name: "Vue.js",
-    content: "Next.js is a React framework for production",
-    icon: <FaVuejs size={"50px"} color="#41b883" />,
-    color: "#41b883",
-  },
-  {
-    name: "Express.js",
-    content: "Next.js is a React framework for production",
-    icon: <SiExpress size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "PostgreSQL",
-    content: "Next.js is a React framework for production",
-    icon: <DiPostgresql size={"50px"} color="#336791" />,
-    color: "#336791",
+    name: "MySQL",
+    content: "MySQL - Popular open-source relational database",
+    icon: <SiMysql size={"50px"} color={"#00758F"} />,
+    color: "#00758F",
   },
   {
     name: "MongoDB",
-    content: "Next.js is a React framework for production",
-    icon: <DiMongodb size={"50px"} color="#4db33d" />,
-    color: "#4db33d",
+    content: "MongoDB - NoSQL document database",
+    icon: <DiMongodb size={"50px"} color={"#4DB33D"} />,
+    color: "#4DB33D",
   },
   {
-    name: "Tailwind CSS",
-    content: "Next.js is a React framework for production",
-    icon: <RiTailwindCssFill size={"50px"} color="#06b6d4" />,
-    color: "#06b6d4",
+    name: "NumPy",
+    content: "NumPy - Numerical computing library for Python",
+    icon: <SiNumpy size={"50px"} color={"#013243"} />,
+    color: "#013243",
   },
   {
-    name: "Firebase",
-    content: "Next.js is a React framework for production",
-    icon: <RiFirebaseFill size={"50px"} color="#FFCA28" />,
-    color: "#FFCA28",
+    name: "Pandas",
+    content: "Pandas - Data manipulation and analysis library",
+    icon: <SiPandas size={"50px"} color={"#150458"} />,
+    color: "#150458",
   },
   {
-    name: "Git",
-    content: "Next.js is a React framework for production",
-    icon: <FaGit size={"50px"} color="#f05032" />,
-    color: "#f05032",
+    name: "TensorFlow",
+    content: "TensorFlow - Machine learning framework",
+    icon: <SiTensorflow size={"50px"} color={"#FF6F00"} />,
+    color: "#FF6F00",
   },
   {
-    name: "GitHub",
-    content: "Next.js is a React framework for production",
-    icon: <FaGithub size={"50px"} color="#fff" />,
-    color: "#000000",
+    name: "Matplotlib",
+    content: "Matplotlib - Data visualization library",
+    icon: <SiPandas size={"50px"} color={"#11557C"} />,
+    color: "#11557C",
   },
+
+  // DevOps & Platforms
   {
-    name: "VS Code",
-    content: "Next.js is a React framework for production",
-    icon: <SiVscodium size={"50px"} color="#007acc" />,
-    color: "#007acc",
-  },
-  {
-    name: "VIM",
-    content: "Next.js is a React framework for production",
-    icon: <DiVim size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "Prettier",
-    content: "Next.js is a React framework for production",
-    icon: <SiPrettier size={"50px"} color="#f7b93c" />,
-    color: "#f7b93c",
-  },
-  {
-    name: "NPM",
-    content: "Next.js is a React framework for production",
-    icon: <DiNpm size={"50px"} color="#CB3837" />,
-    color: "#CB3837",
-  },
-  {
-    name: "Yarn",
-    content: "Next.js is a React framework for production",
-    icon: <FaYarn size={"50px"} color="#2C8EBB" />,
-    color: "#2C8EBB",
+    name: "Windows Terminal",
+    content: "Windows Terminal - Modern terminal application",
+    icon: <TbBrandWindows size={"50px"} color={"#0078D4"} />,
+    color: "#0078D4",
   },
   {
     name: "Vercel",
-    content: "Next.js is a React framework for production",
-    icon: <SiVercel size={"50px"} color="#fff" />,
+    content: "Vercel - Platform for deploying Next.js applications",
+    icon: <SiVercel size={"50px"} color={"#000"} />,
     color: "#000000",
   },
   {
-    name: "Linux",
-    content: "Next.js is a React framework for production",
-    icon: <FaLinux size={"50px"} color="#fff" />,
-    color: "#000000",
+    name: "Anaconda",
+    content: "Anaconda - Python distribution and package manager",
+    icon: <SiPandas size={"50px"} color={"#44A833"} />,
+    color: "#44A833",
+  },
+
+  // Design & Media
+  {
+    name: "Adobe Acrobat Reader",
+    content: "Adobe Acrobat Reader - PDF viewer and editor",
+    icon: <BiLogoAdobe size={"50px"} color={"#FF0000"} />,
+    color: "#FF0000",
   },
   {
-    name: "Kubuntu",
-    content: "Next.js is a React framework for production",
-    // give me correct color for  kubuntu
-    icon: <SiKubuntu size={"50px"} color="#0077C4" />,
-    color: "#000000",
+    name: "Adobe After Effects",
+    content: "Adobe After Effects - Motion graphics and visual effects",
+    icon: <BiLogoAdobe size={"50px"} color={"#9999FF"} />,
+    color: "#9999FF",
   },
   {
-    name: "Terminal",
-    content: "Next.js is a React framework for production",
-    icon: <TbTerminal2 size={"50px"} color="#fff" />,
-    color: "#000000",
+    name: "Adobe Lightroom",
+    content: "Adobe Lightroom - Photo editing and organization",
+    icon: <BiLogoAdobe size={"50px"} color={"#31A8FF"} />,
+    color: "#31A8FF",
   },
   {
-    name: "AWS",
-    content: "Next.js is a React framework for production",
-    icon: <FaAws size={"50px"} color="#3f51b5" />,
+    name: "Adobe Lightroom Classic",
+    content: "Adobe Lightroom Classic - Advanced photo editing",
+    icon: <BiLogoAdobe size={"50px"} color={"#31A8FF"} />,
+    color: "#31A8FF",
+  },
+  {
+    name: "Adobe Photoshop",
+    content: "Adobe Photoshop - Image editing and design tool",
+    icon: <BiLogoAdobe size={"50px"} color={"#31A8FF"} />,
+    color: "#31A8FF",
+  },
+  {
+    name: "Adobe Premiere Pro",
+    content: "Adobe Premiere Pro - Video editing software",
+    icon: <BiLogoAdobe size={"50px"} color={"#EA77FF"} />,
+    color: "#EA77FF",
+  },
+  {
+    name: "Figma",
+    content: "Figma - Collaborative design and prototyping tool",
+    icon: <SiFigma size={"50px"} color={"#F24E1E"} />,
+    color: "#F24E1E",
+  },
+  {
+    name: "Canva",
+    content: "Canva - Online design and graphics creation platform",
+    icon: <SiCanva size={"50px"} color={"#00C4CC"} />,
+    color: "#00C4CC",
+  },
+  {
+    name: "Blender",
+    content: "Blender - 3D modeling and animation software",
+    icon: <SiBlender size={"50px"} color={"#F5792A"} />,
+    color: "#F5792A",
+  },
+
+  // Version Control
+  {
+    name: "Git",
+    content: "Git - Distributed version control system",
+    icon: <SiGit size={"50px"} color={"#F05032"} />,
+    color: "#F05032",
+  },
+  {
+    name: "GitHub",
+    content: "GitHub - Web-based version control repository",
+    icon: <SiGithub size={"50px"} color={"#000"} />,
     color: "#000000",
   },
 ];
